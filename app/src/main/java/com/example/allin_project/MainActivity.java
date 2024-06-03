@@ -47,4 +47,12 @@ public class MainActivity extends AppCompatActivity {
         };
         handler.post(runnable);
     }
+
+    public void Notes(View v) {
+        MainActivity.this.startActivity(new Intent(MainActivity.this, NotesAcrivity.class));
+    }
+
+    public void App_list(View v) {
+        MainActivity.this.startActivity(new Intent(MainActivity.this, App_ListActivity.class));
+    }
 }

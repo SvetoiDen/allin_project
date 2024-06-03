@@ -3,4 +3,5 @@
     <string name="clock_text">Часы</string>
     <string name="zametki_text">Заметки</string>
     <string name="app_list_text">Список приложений</string>
+    <string name="Notes_create">+ Создать заметку</string>
 </resources>

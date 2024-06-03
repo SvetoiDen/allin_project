@@ -27,6 +27,7 @@
         android:layout_marginTop="50dp"
         android:fontFamily="@font/montserrat_bold"
         android:gravity="center"
+        android:onClick="Notes"
         android:text="@string/zametki_text"
         android:textSize="35dp"
         android:backgroundTint="#6357F4" />
@@ -39,6 +40,7 @@
         android:text="@string/app_list_text"
         android:fontFamily="@font/montserrat_bold"
         android:gravity="center"
+        android:onClick="App_list"
         android:textSize="19dp"
         android:layout_marginBottom="80dp"
         android:layout_marginTop="20dp"/>
