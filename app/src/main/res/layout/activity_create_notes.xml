@@ -1,0 +1,77 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/main"
+    android:orientation="vertical"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="#99091FE5"
+    tools:context=".NotesAcrivity">
+
+    <ImageButton
+        android:layout_width="48dp"
+        android:layout_height="48dp"
+        android:src="@drawable/close"
+        android:background="@android:color/transparent"
+        android:backgroundTint="#6357F4"
+        android:layout_marginStart="15dp"
+        android:onClick="back"
+        android:layout_marginTop="15dp"/>
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:fontFamily="@font/montserrat_bold"
+        android:textSize="25dp"
+        android:textColor="@color/white"
+        android:layout_gravity="center_horizontal"
+        android:layout_marginTop="-44dp"
+        android:layout_marginStart="20dp"
+        android:text="@string/notes_create_activity"/>
+
+    <LinearLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:layout_marginTop="150dp"
+        android:layout_gravity="center"
+        android:gravity="center">
+
+        <EditText
+            android:id="@+id/name_1"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:fontFamily="@font/montserrat_medium"
+            android:textColor="@color/white"
+            android:hint="Введите название заметки"
+            android:textSize="20dp" />
+
+        <EditText
+            android:id="@+id/desc_2"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="20dp"
+            android:textColor="@color/white"
+            android:fontFamily="@font/montserrat_medium"
+            android:hint="Введите Описание заметки"
+            android:textSize="20dp" />
+
+    </LinearLayout>
+
+    <Button
+        style="@style/Widget.MaterialComponents.Button.TextButton.Dialog.Flush"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:layout_marginTop="50dp"
+        android:fontFamily="@font/montserrat_medium"
+        android:width="240dp"
+        android:onClick="create_notes"
+        android:backgroundTint="#6357F4"
+        android:gravity="center"
+        android:text="Создать заметку"
+        android:textColor="@color/white"
+        android:textSize="18dp" />
+
+</LinearLayout>

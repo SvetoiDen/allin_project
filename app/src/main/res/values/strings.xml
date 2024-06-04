@@ -4,4 +4,6 @@
     <string name="zametki_text">Заметки</string>
     <string name="app_list_text">Список приложений</string>
     <string name="Notes_create">+ Создать заметку</string>
+    <string name="notes_create_activity">Добавляем заметку</string>
+    <string name="notes_update_activity">Обновляем заметку</string>
 </resources>
