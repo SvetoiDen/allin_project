@@ -31,8 +31,9 @@
         android:text="@string/app_list_text"/>
 
     <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/recyclerView_1"
         android:layout_width="281dp"
-        android:layout_height="523dp"
+        android:layout_height="439dp"
         android:layout_gravity="center"
         android:layout_marginTop="30dp" />
 </LinearLayout>

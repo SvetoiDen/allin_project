@@ -16,6 +16,7 @@ public class BDNotes extends SQLiteOpenHelper {
     private Context context;
     private static final String DATABASE_NAME = "notesdb";
     private static final String TABLE_NAME = "notes";
+    private static final String APP_NAME = "apps";
 
     private static final String KEY_ID = "id";
     private static final String KEY_NAME = "name";
@@ -31,12 +32,37 @@ public class BDNotes extends SQLiteOpenHelper {
         String execuse = "CREATE TABLE " + TABLE_NAME + " (" + KEY_ID + " INTEGER PRIMARY KEY AUTOINCREMENT, "
                 + KEY_NAME + " TEXT, " + KEY_DESC + " TEXT);";
         db.execSQL(execuse);
+        String execuse_1 = "CREATE TABLE " + APP_NAME + " (" + KEY_ID + " INTEGER PRIMARY KEY AUTOINCREMENT, "
+                + KEY_NAME + " TEXT, " + KEY_DESC + " TEXT);";
+        db.execSQL(execuse_1);
     }
 
     @Override
     public void onUpgrade(SQLiteDatabase db, int oldVersion, int newVersion) {
         db.execSQL("DROP TABLE IF EXISTS " + TABLE_NAME);
+        db.execSQL("DROP TABLE IF EXISTS " + APP_NAME);
         onCreate(db);
+    }
+
+    void appDate() {
+        SQLiteDatabase db = this.getWritableDatabase();
+        ContentValues contentValues = new ContentValues();
+
+        contentValues.put(KEY_NAME, "Настройки");
+        contentValues.put(KEY_DESC, "com.android.settings");
+
+        db.insert(APP_NAME, null, contentValues);
+
+        contentValues.put(KEY_NAME, "Телефон");
+        contentValues.put(KEY_DESC, "com.android.phone");
+
+        db.insert(APP_NAME, null, contentValues);
+    }
+
+    void deleteApp() {
+        SQLiteDatabase db = this.getWritableDatabase();
+
+        db.execSQL("DELETE FROM " + APP_NAME);
     }
 
     void addNotes(String title, String desc) {
@@ -51,6 +77,17 @@ public class BDNotes extends SQLiteOpenHelper {
 
     Cursor readAllDate() {
         String query = "SELECT * FROM " + TABLE_NAME;
+        SQLiteDatabase db = this.getReadableDatabase();
+
+        Cursor cursor = null;
+        if (db != null) {
+            cursor = db.rawQuery(query, null);
+        }
+        return cursor;
+    }
+
+    Cursor readAllDate_App() {
+        String query = "SELECT * FROM " + APP_NAME;
         SQLiteDatabase db = this.getReadableDatabase();
 
         Cursor cursor = null;
