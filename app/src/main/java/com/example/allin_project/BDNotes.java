@@ -53,8 +53,28 @@ public class BDNotes extends SQLiteOpenHelper {
 
         db.insert(APP_NAME, null, contentValues);
 
-        contentValues.put(KEY_NAME, "Телефон");
-        contentValues.put(KEY_DESC, "com.android.phone");
+        contentValues.put(KEY_NAME, "Браузер");
+        contentValues.put(KEY_DESC, "com.android.chrome");
+
+        db.insert(APP_NAME, null, contentValues);
+
+        contentValues.put(KEY_NAME, "YouTube");
+        contentValues.put(KEY_DESC, "com.google.android.youtube");
+
+        db.insert(APP_NAME, null, contentValues);
+
+        contentValues.put(KEY_NAME, "Whatsapp");
+        contentValues.put(KEY_DESC, "com.whatsapp");
+
+        db.insert(APP_NAME, null, contentValues);
+
+        contentValues.put(KEY_NAME, "Discord");
+        contentValues.put(KEY_DESC, "com.discord");
+
+        db.insert(APP_NAME, null, contentValues);
+
+        contentValues.put(KEY_NAME, "Шахматы");
+        contentValues.put(KEY_DESC, "com.chess");
 
         db.insert(APP_NAME, null, contentValues);
     }

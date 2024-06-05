@@ -6,10 +6,14 @@ import static android.Manifest.permission.MANAGE_EXTERNAL_STORAGE;
 import static android.Manifest.permission_group.CAMERA;
 
 import android.Manifest;
+import android.annotation.SuppressLint;
 import android.content.ActivityNotFoundException;
+import android.content.ComponentName;
 import android.content.Intent;
 import android.content.pm.PackageManager;
+import android.content.pm.ResolveInfo;
 import android.database.Cursor;
+import android.net.Uri;
 import android.os.Build;
 import android.os.Bundle;
 import android.os.DropBoxManager;
@@ -33,6 +37,7 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import java.io.File;
 import java.util.ArrayList;
+import java.util.List;
 
 public class App_ListActivity extends AppCompatActivity {
 
@@ -86,8 +91,7 @@ public class App_ListActivity extends AppCompatActivity {
     void getAndSetIntentData() {
         if (getIntent().hasExtra("com")) {
             String desc = getIntent().getStringExtra("com");
-            Intent i = getPackageManager().getLaunchIntentForPackage(desc);
-            startActivity(i);
+            startApplication(desc);
         }
     }
 
@@ -101,5 +105,45 @@ public class App_ListActivity extends AppCompatActivity {
                 com_desc.add(cursor.getString(2));
             }
         }
+    }
+
+    public void startApplication(String packageName)
+    {
+        try
+        {
+            Intent intent = new Intent("android.intent.action.MAIN");
+            intent.addCategory("android.intent.category.LAUNCHER");
+
+            intent.addFlags(Intent.FLAG_ACTIVITY_NO_ANIMATION);
+            @SuppressLint("QueryPermissionsNeeded") List<ResolveInfo> resolveInfoList = getPackageManager().queryIntentActivities(intent, 0);
+
+            for(ResolveInfo info : resolveInfoList)
+                if(info.activityInfo.packageName.equalsIgnoreCase(packageName))
+                {
+                    launchComponent(info.activityInfo.packageName, info.activityInfo.name);
+                    return;
+                }
+            showInMarket(packageName);
+        }
+        catch (Exception e)
+        {
+            showInMarket(packageName);
+        }
+    }
+
+    private void launchComponent(String packageName, String name)
+    {
+        Intent intent = new Intent("android.intent.action.MAIN");
+        intent.addCategory("android.intent.category.LAUNCHER");
+        intent.setComponent(new ComponentName(packageName, name));
+        intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+        startActivity(intent);
+    }
+
+    private void showInMarket(String packageName)
+    {
+        Intent intent = new Intent(Intent.ACTION_VIEW, Uri.parse("market://details?id=" + packageName));
+        intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+        startActivity(intent);
     }
 }
